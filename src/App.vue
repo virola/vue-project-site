@@ -6,7 +6,11 @@
 
 <script>
 export default {
-  name: 'App'
+  name: 'App',
+  metaInfo: {
+    title: '有方的首页',
+    titleTemplate: '%s | A vuejs project'
+  }
 }
 </script>
 

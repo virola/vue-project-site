@@ -2,18 +2,29 @@
 import {getStore} from '../store/util'
 
 const fetch = async (url, params = {}, type = 'get') => {
-  // debugger
-  const response = await axios({
+  type = type.toLowerCase()
+  // console.log(params)
+  let options = {
     method: type,
-    url: url,
-    data: params
-  })
-  let data = response.data
-  if (data.status === 'ok') {
-    return data.data
+    url: url
+  }
+  // get params or post data
+  if (type === 'get') {
+    options.params = params
+  } else if (type === 'post') {
+    options.data = params
+  }
+  // debugger
+  const response = await axios(options)
+  let content = response.data
+  if (content.status === 'ok') {
+    // success
+    return content.data
   } else {
+    // failure
     return {
-      errmsg: data.errmsg
+      data: content.data,
+      errmsg: content.errmsg || '请求错误'
     }
   }
 }
@@ -23,6 +34,8 @@ const fetch = async (url, params = {}, type = 'get') => {
  */
 const URL_API = {
   'ARTICLE_LIST': 'api/get/list.json',
+  'ARTICLE_DATA': 'api/get/article/1.json',
+  'ARTICLE_COMMENTS': 'api/get/article/comments.json',
   'BANNER_DATA': 'api/get/banner.json',
   'SIDE_ZHAOPIN': 'api/get/side/zhaopin.json',
   'SIDE_TRAVEL_APPLY': 'api/get/side/travel.json',
@@ -92,3 +105,15 @@ export const userRegister = (params) => fetch(URL_API.USER_REGISTER, params, 'po
  * 用户登出
  */
 export const userLogout = () => fetch(URL_API.USER_LOGOUT)
+
+/**
+ * 根据id获取文章数据
+ * @param {number} id article id
+ */
+export const getArticleData = (id) => fetch(URL_API.ARTICLE_DATA, {id})
+
+/**
+ * 根据id获取文章评论
+ * @param {number} id 文章ID
+ */
+export const getArticleComment = (id) => fetch(URL_API.ARTICLE_COMMENTS, {id})

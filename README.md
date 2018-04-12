@@ -12,6 +12,9 @@
 - bootstrap
 - sass
 - [axios](https://github.com/axios/axios)
+- vuex
+- vue-router
+- vue-meta 定义document.title
 
 
 ## Build Setup

@@ -21,20 +21,7 @@
           <side-block data-key="zhaopin"></side-block>
           <side-block data-key="travelApply"></side-block>
           <side-block data-key="hot"></side-block>
-          <!-- 写死的 -->
-          <section class="side-box">
-            <h4 class="side-title">订阅最新资讯</h4>
-            <div class="side-content">
-              <form action="" class="has-feedback" v-on:submit.prevent="submitFeedEmail">
-                <div class="input-group">
-                  <input type="email" v-model="feedEmail" class="form-control input-dark" placeholder="请填写您的邮箱" required>
-                  <div class="input-group-append">
-                    <button class="btn btn-primary">立即订阅</button>
-                  </div>
-                </div>
-              </form>
-            </div>
-          </section>
+          <side-block data-key="feed"></side-block>          
         </aside>
       </section>
       <common-footer></common-footer>
@@ -50,8 +37,7 @@ export default {
   name: 'home',
   data () {
     return {
-      msg: 'Welcome to Your Vue.js App',
-      feedEmail: ''
+      msg: 'Welcome to Your Vue.js App'
     }
   },
   components: {
@@ -62,12 +48,6 @@ export default {
   watch: {
     // 如果路由有变化，会再次执行该方法
     // '$route': 'fetchData'
-  },
-  methods: {
-    submitFeedEmail () {
-      // todo
-      console.log(this.feedEmail)
-    }
   }
 }
 </script>
