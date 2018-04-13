@@ -1,4 +1,4 @@
-import { userLogin, userLogout, getUser } from '../service/getData'
+import { getUser } from '../service/getData'
 
 export default {
 
@@ -7,16 +7,6 @@ export default {
     state
   }) {
     let res = await getUser()
-    commit('getUser', res)
-  },
-  login ({ commit }) {
-    userLogin(data => {
-      commit('setUser', data)
-    })
-  },
-  logout ({ commit }) {
-    userLogout(resp => {
-      commit('setUser', null)
-    })
+    commit('getUser', res.user_info)
   }
 }

@@ -4,9 +4,32 @@
       <div class="head-panel clear">
         <h2 class="logo fl"><router-link to="/"><img src="../assets/img/logo.png"></router-link></h2>
         <div class="panel fr">
-          <router-link to="/search"><i class="material-icons">search</i></router-link>
-          <router-link to="/login"><i class="material-icons">person</i></router-link>
-          <router-link to="/contribute" class="btn btn-primary">投稿</router-link>
+          <router-link to="/search" class="panel-item"><i class="material-icons">search</i></router-link>
+          <div class="panel-item user-icon">
+            <router-link :to="userInfo ? '/user' : '/login'">
+              <img v-if="userInfo" src="../assets/img/avatar.jpeg" alt="userInfo.username">
+              <i v-else class="material-icons">person</i>
+            </router-link>
+            <!-- user sub  -->
+            <div class="nav-sub" v-if="userInfo">
+              <ul>
+                <li>
+                  <router-link to="/user/index">{{userInfo.username}}</router-link>
+                </li>
+                <li>
+                  <router-link to="/user/collect">我的收藏</router-link>
+                </li>
+                <li>
+                  <router-link to="/user/msg">我的消息</router-link>
+                </li>
+                <li>
+                  <a href="/" v-on:click.prevent="userLogout">退出</a>
+                </li>
+              </ul>
+            </div>
+            <!-- user sub over -->
+          </div>
+          <router-link to="/contribute" class="panel-item btn btn-primary post-btn">投稿</router-link>
         </div>
       </div>
       <nav class="nav">
@@ -30,6 +53,10 @@
   </header>
 </template>
 <script>
+import {mapState, mapActions, mapMutations} from 'vuex'
+import {userSignout} from '../service/getData'
+import {removeStore} from '../store/util'
+
 export default {
   name: 'common-header',
   data () {
@@ -151,17 +178,40 @@ export default {
       styles: ''
     }
   },
-  created() {
+  created () {
     this.initData()
+    this.getUserInfo()
+  },
+  computed: {
+    ...mapState([
+      'userInfo'
+    ])
+  },
+  watch: {
+    userInfo () {
+      // console.log(this);
+    }
   },
   methods: {
+    ...mapActions([
+      'getUserInfo'
+    ]),
+    ...mapMutations([
+      'logout'
+    ]),
     initData () {
-      // console.log(this);
-      let route = this.$route
-      // console.log(route)
-      if (route.path.indexOf('index') === -1) {
+      // let routePath = this.$route
+      if (this.$route.path.indexOf('index') === -1) {
         this.styles = 'style-common'
       }
+    },
+    //退出登录
+    async userLogout () {
+      // vuex clear
+      this.logout();
+      removeStore('user_id')
+      await userSignout()
+      // console.log(this.userInfo)
     }
   }
 }
@@ -195,8 +245,13 @@ export default {
 }
 .head-panel {
   padding-top: 20px;
-  .panel a {
+  .panel-item {
+    display: block;
+    float: left;
     margin-left: 25px;
+  }
+  .panel-item:not(.btn) {
+    margin-top: 5px;
   }
 }
 .logo {
@@ -264,5 +319,34 @@ export default {
 }
 .router-link-exact-active {
   font-weight: bold;
+}
+.user-icon {
+  position: relative;
+  .nav-sub {
+    left: auto;
+    right: -15px;
+
+    a {
+      display: block;
+      padding: 5px 15px;
+      font-size: 13px;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
+  img {
+    width: 25px;
+    height: 25px;
+    border-radius: 50%;
+  }
+  &:hover {
+    .nav-sub {
+      display: block;
+    }
+  }
+}
+.post-btn {
+  width: 100px;
 }
 </style>

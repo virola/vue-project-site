@@ -33,6 +33,7 @@ const fetch = async (url, params = {}, type = 'get') => {
  * 汇总接口URL配置
  */
 const URL_API = {
+  // get requests
   'ARTICLE_LIST': 'api/get/list.json',
   'ARTICLE_DATA': 'api/get/article/1.json',
   'ARTICLE_COMMENTS': 'api/get/article/comments.json',
@@ -43,9 +44,10 @@ const URL_API = {
   'SIDE_RECOMMEND': 'api/get/side/recommend.json',
   'SIDE_TAGS': 'api/get/side/tags.json',
   'USER_DATA': 'api/get/user.json',
+  'USER_LOGOUT': 'api/get/logout.json',
+  // post requests
   'USER_LOGIN': 'api/post/login',
-  'USER_REGISTER': 'api/post/register',
-  'USER_LOGOUT': 'api/get/logout'
+  'USER_REGISTER': 'api/post/register'
 }
 
 /**
@@ -53,9 +55,9 @@ const URL_API = {
  * @param {Number} category 栏目id
  * @param {Number} page 当前页码
  */
-export const getArticleList = (category = 0, page = 1) => fetch(URL_API.ARTICLE_LIST, {
-  'cate_id': category,
-  'page_no': page
+export const getArticleList = (params) => fetch(URL_API.ARTICLE_LIST, {
+  'cate_id': params.category,
+  'page_no': params.page
 })
 
 /**
@@ -104,7 +106,7 @@ export const userRegister = (params) => fetch(URL_API.USER_REGISTER, params, 'po
 /**
  * 用户登出
  */
-export const userLogout = () => fetch(URL_API.USER_LOGOUT)
+export const userSignout = () => fetch(URL_API.USER_LOGOUT)
 
 /**
  * 根据id获取文章数据

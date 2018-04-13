@@ -15,12 +15,13 @@ export default {
     }
   },
   setUser (state, info) {
-    console.log(info)
     state.userInfo = info
     state.login = true
     setStore('user_id', info.user_id)
   },
   logout (state) {
     state.userInfo = null
+    state.login = false
+    setStore('user_id', null)
   }
 }

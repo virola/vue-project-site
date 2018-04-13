@@ -49,7 +49,7 @@ form, input {
   float: right;
 }
 .clear {
-  overflow: hidden;
+  // overflow: hidden;
   _zoom: 1;
   
   &::after, &::before {

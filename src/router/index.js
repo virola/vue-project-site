@@ -9,6 +9,12 @@ import Register from '@/page/Register'
 import Search from '@/page/Search'
 import Article from '@/page/Article'
 
+// 登录后页面
+import UserIndex from '@/page/user/Index'
+import UserCollect from '@/page/user/Collect'
+import UserInfo from '@/page/user/Info'
+import UserMsg from '@/page/user/Msg'
+
 Vue.use(Router)
 Vue.use(Meta)
 
@@ -22,9 +28,6 @@ export default new Router({
       path: '/index',
       name: 'home',
       component: Home,
-      meta: {
-        title: '首页'
-      },
       children: [
         {
           path: ':column',
@@ -33,35 +36,42 @@ export default new Router({
       ]
     },
     {
+      path: '/user',
+      name: 'user',
+      component: UserIndex,
+      children: [
+        {
+          path: '/user/collect',
+          component: UserCollect
+        },
+        {
+          path: '/user/info',
+          component: UserInfo
+        },
+        {
+          path: '/user/msg',
+          component: UserMsg
+        }
+      ]
+    },
+    {
       path: '/login',
       name: 'login',
-      meta: {
-        title: '用户登录'
-      },
       component: Login
     },
     {
       path: '/register',
       name: 'register',
-      meta: {
-        title: '用户注册'
-      },
       component: Register
     },
     {
       path: '/search',
       name: 'search',
-      meta: {
-        title: '搜索'
-      },
       component: Search
     },
     {
       path: '/search_result',
-      name: 'search-result',
-      meta: {
-        title: '搜索结果'
-      }
+      name: 'search-result'
     },
     {
       path: '/column/',
@@ -70,9 +80,6 @@ export default new Router({
     },
     {
       path: '/article',
-      meta: {
-        title: '文章'
-      },
       component: Article
     }
   ]

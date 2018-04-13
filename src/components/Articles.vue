@@ -58,12 +58,11 @@ export default {
         category: 0
       }
       // debugger
-      // todo...
+      // console.log(dataset)
       const data = await getArticleList({
         page: dataset.page,
         category: dataset.category
       })
-      // console.log(data);
       this.list = data.list
     },
     groupList (list) {

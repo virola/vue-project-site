@@ -89,7 +89,6 @@ export default {
       //用户名登录
       let resp = await userLogin(data.username, data.password)
       let userInfo = resp.userInfo
-      console.log(userInfo)
       if (!userInfo.user_id || userInfo.user_id < 0) {
         this.formMsg = userInfo.message || '登录失败'
       }
