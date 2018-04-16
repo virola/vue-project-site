@@ -56,8 +56,6 @@ export default {
   },
   data () {
     return {
-      username: '',
-      editting: false,
       msg: 'Hello!'
     }
   },
@@ -69,21 +67,10 @@ export default {
       'userInfo'
     ])
   },
-  watch: {
-    'userInfo': function () {
-      this.username = this.userInfo.username
-    }
-  },
   methods: {
     ...mapActions([
       'getUserInfo'
-    ]),
-    submitEdit () {
-      this.editting = false
-      // submit edit
-      // getData post fetch
-      // this.username
-    }
+    ])
   }
 
 }

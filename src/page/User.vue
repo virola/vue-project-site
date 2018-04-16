@@ -23,13 +23,13 @@
           <!-- username end -->
           <ul class="side-nav">
             <li>
-              <router-link to="/user" exact><i><icon name="regular/user"></icon></i> 我的设置</router-link>
+              <router-link to="/user/index"><i><icon name="regular/user"></icon></i> 我的设置</router-link>
             </li>
             <li>
-              <router-link to="/user/collect" exact><i><icon name="regular/star"></icon></i> 我的收藏</router-link>
+              <router-link to="/user/collect"><i><icon name="regular/star"></icon></i> 我的收藏</router-link>
             </li>
             <li>
-              <router-link to="/user/msg" exact><i><icon name="regular/comments"></icon></i> 我的消息</router-link>
+              <router-link to="/user/msg"><i><icon name="regular/comments"></icon></i> 我的消息</router-link>
             </li>
           </ul>
         </aside>

@@ -1,11 +1,15 @@
 <template>
   <div>
-    <section>user msg: {{msg}}</section>
+    <h3 class="title">
+      <router-link to="/user/msg">未读消息</router-link>
+      <router-link to="/user/msg?all=1">已读消息</router-link>
+    </h3>
+    <div class="main-content">
+    </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'user-msg',
   data () {
     return {
       msg: 'Hello!'
@@ -15,5 +19,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import 'src/assets/mixin';
-@import 'src/assets/user_center';
+@import 'src/assets/user/common';
 </style>

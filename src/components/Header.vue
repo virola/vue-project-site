@@ -2,7 +2,7 @@
   <header class="header" :class="styles">
     <div class="container">
       <div class="head-panel clear">
-        <h2 class="logo fl"><router-link to="/"><img src="../assets/img/logo.png"></router-link></h2>
+        <h2 class="logo fl"><router-link to="/"><img src="../assets/img/logo.png" title="首页"></router-link></h2>
         <div class="panel fr">
           <router-link to="/search" class="panel-item"><i class="icons"><icon name="search"></icon></i></router-link>
           <div class="panel-item user-icon">

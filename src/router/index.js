@@ -41,6 +41,10 @@ export default new Router({
       children: [
         {
           path: '',
+          redirect: 'index'
+        },
+        {
+          path: 'index',
           component: UserIndex
         },
         {
