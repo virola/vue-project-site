@@ -8,7 +8,7 @@
 export default {
   name: 'App',
   metaInfo: {
-    title: '有方的首页',
+    title: '有方',
     titleTemplate: '%s | A vuejs project'
   }
 }

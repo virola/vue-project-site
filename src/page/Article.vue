@@ -14,8 +14,8 @@
           <div class="content" v-html="article.content"></div>
           <!-- like and collect -->
           <div class="operate">
-            <b class="btn btn-primary" v-on:click="article.like_num += 1"><i class="material-icons">thumb_up</i> {{article.like_num}}</b>
-            <b class="btn btn-primary" v-on:click="article.collect_num += 1"><i class="material-icons">star</i> {{article.collect_num}}</b>
+            <b class="btn btn-primary" v-on:click="article.like_num += 1"><i class="icons"><icon name="thumbs-up"></icon></i> {{article.like_num}}</b>
+            <b class="btn btn-primary" v-on:click="article.collect_num += 1"><i class="icons"><icon name="star"></icon></i> {{article.collect_num}}</b>
           </div>
           <!-- share -->
           <div class="share">
@@ -169,10 +169,10 @@ export default {
     line-height: 34px;
     font-size: 12px;
   }
-  i {
+  .icons {
     margin-right: 5px;
-    font-size: 16px;
-    vertical-align: text-top;
+    font-size: 14px;
+    vertical-align: top;
   }
 }
 .share {

@@ -4,14 +4,14 @@
     <section class="container user-page">
       <h2 class="logo center"><router-link to="/"><img src="../assets/img/logo.png"></router-link></h2>
       <div class="user-link">
-        <router-link to="/login">登录</router-link>
-        <router-link to="/register">注册</router-link>
+        <router-link :to="{path: '/login', query: {redirectTo: redirectTo}}">登录</router-link>
+        <router-link :to="{path: '/register', query: {redirectTo: redirectTo}}" class="router-link-active">注册</router-link>
       </div>
       <form novalidate action="#" class="needs-validation" :class="{'was-validated': validation.form}" v-on:submit.prevent="onSubmit">
         <div class="form-group has-feedback" :class="{'was-validated': validation.phone.invalid}">
           <div class="input-group" :class="{'is-invalid': validation.phone.invalid}">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="material-icons">phone_iphone</i></span>
+              <span class="input-group-text"><i class="icons"><icon name="mobile-alt"></icon></i></span>
             </div>
             <input type="tel" name="phone" class="form-control" :class="{'is-invalid': validation.phone.invalid}" placeholder="手机号码" v-model.trim.number="phone" required>
             <div class="invalid-feedback">
@@ -37,19 +37,19 @@
         <div class="form-group has-feedback" :class="{'was-validated': validation.password.invalid}">
           <div class="input-group" :class="{'is-invalid': validation.password.invalid}">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="material-icons">lock_outline</i></span>
+              <span class="input-group-text"><i class="icons"><icon name="lock"></icon></i></span>
             </div>
             <input type="password" name="password" class="form-control" :class="{'is-invalid': validation.password.invalid}" placeholder="输入密码" v-model="password" required>
             <div class="invalid-feedback">
               {{validation.password.msg}}
             </div>
           </div>
-          
         </div>
+
         <div class="form-group has-feedback" :class="{'was-validated': validation.passwordrepeat.invalid}">
           <div class="input-group" :class="{'is-invalid': validation.passwordrepeat.invalid}">
             <div class="input-group-prepend">
-              <span class="input-group-text"><i class="material-icons">lock_outline</i></span>
+              <span class="input-group-text"><i class="icons"><icon name="lock"></icon></i></span>
             </div>
             <input type="password" name="password_repeat" class="form-control" :class="{'is-invalid': validation.passwordrepeat.invalid}" placeholder="再次输入密码" v-model="passwordrepeat" required>
             <div class="invalid-feedback">
@@ -75,10 +75,14 @@ import {mapState, mapMutations} from 'vuex'
 
 export default {
   name: 'register',
+  metaInfo: {
+    title: '用户注册'
+  },
   data () {
     let msg = '一行提示文字'
     let invalid = false
     return {
+      redirectTo: '',
       phone: '',
       mcode: '',
       password: '',
@@ -92,6 +96,13 @@ export default {
       },
       formMsg: ''
     }
+  },
+  beforeRouteEnter: (to, from, next) => {
+    next(vm => {
+      // 把历史记录带进来，可能会去注册页面
+      vm.redirectTo = vm.$route.query.redirectTo || from.fullPath
+      // console.log(vm.redirectTo)
+    })
   },
   computed: {
     //判断手机号码
@@ -114,11 +125,11 @@ export default {
 
       valids.password.invalid = !this.password ? true : false
       valids.password.msg = '请输入密码'
-
-      valids.passwordrepeat.invalid = !this.passwordrepeat ? true : false
-      valids.passwordrepeat.msg = '请输入密码'
-
-      if (this.passwordrepeat !== this.password) {
+      
+      if (!this.passwordrepeat) {
+        valids.passwordrepeat.invalid = true
+        valids.passwordrepeat.msg = '请输入密码'
+      } else if (this.passwordrepeat !== this.password) {
         valids.passwordrepeat.invalid =  true
         valids.passwordrepeat.msg = '两次密码输入不一致'
       } else {
@@ -164,5 +175,5 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-@import '../assets/user'
+@import '../assets/user';
 </style>

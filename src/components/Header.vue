@@ -4,11 +4,11 @@
       <div class="head-panel clear">
         <h2 class="logo fl"><router-link to="/"><img src="../assets/img/logo.png"></router-link></h2>
         <div class="panel fr">
-          <router-link to="/search" class="panel-item"><i class="material-icons">search</i></router-link>
+          <router-link to="/search" class="panel-item"><i class="icons"><icon name="search"></icon></i></router-link>
           <div class="panel-item user-icon">
             <router-link :to="userInfo ? '/user' : '/login'">
-              <img v-if="userInfo" src="../assets/img/avatar.jpeg" alt="userInfo.username">
-              <i v-else class="material-icons">person</i>
+              <img v-if="userInfo" :src="userInfo.avatar">
+              <i v-else class="icons"><icon name="user"></icon></i>
             </router-link>
             <!-- user sub  -->
             <div class="nav-sub" v-if="userInfo">
@@ -187,11 +187,6 @@ export default {
       'userInfo'
     ])
   },
-  watch: {
-    userInfo () {
-      // console.log(this);
-    }
-  },
   methods: {
     ...mapActions([
       'getUserInfo'
@@ -200,8 +195,9 @@ export default {
       'logout'
     ]),
     initData () {
-      // let routePath = this.$route
-      if (this.$route.path.indexOf('index') === -1) {
+      let routePath = this.$route.path
+      // 首页和用户中心的页面头部不加 style-common
+      if (routePath.indexOf('index') === -1 && routePath.indexOf('/user') === -1) {
         this.styles = 'style-common'
       }
     },
@@ -211,7 +207,6 @@ export default {
       this.logout();
       removeStore('user_id')
       await userSignout()
-      // console.log(this.userInfo)
     }
   }
 }
@@ -249,6 +244,12 @@ export default {
     display: block;
     float: left;
     margin-left: 25px;
+    i {
+      display: block;
+      width: 25px;
+      text-align: center;
+      font-size: 18px;
+    }
   }
   .panel-item:not(.btn) {
     margin-top: 5px;

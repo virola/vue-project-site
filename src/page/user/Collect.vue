@@ -15,5 +15,5 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import 'src/assets/mixin';
-
+@import 'src/assets/user_center';
 </style>

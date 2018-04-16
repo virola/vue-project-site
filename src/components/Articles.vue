@@ -5,10 +5,10 @@
       <li class="list-item" v-for="(item,index) in list" v-if="index % 5 % 2 === 0" :key="index">
         <router-link class="link-cover" :to="{path: 'article', query:{id: item.id}}"></router-link>
         <router-link :to="{path: 'article', query:{id: item.id}}" class="article-pic"><img :src="item.pic" alt="item.title"/>
-        <span class="video-btn" v-if="item.video"><i class="material-icons">play_arrow</i></span>
+        <span class="video-btn" v-if="item.video"><i class="icons"><icon name="play"></icon></i></span>
         </router-link>
         <div class="article-text">
-          <p class="article-column"><i class="material-icons">bookmark_border</i>{{item.col_title}}</p>
+          <p class="article-column"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</p>
           <h3><router-link :to="{path: 'article', query:{id: item.id}}">{{item.title}}</router-link></h3>
           <div class="article-info">
             <p class="article-brief">{{item.brief}}</p>
@@ -23,7 +23,7 @@
         <router-link class="link-cover" :to="{path: 'article', query:{id: item.id}}"></router-link>
         <router-link :to="{path: 'article', query:{id: item.id}}" class="article-pic"><img :src="item.pic" alt="item.title"/></router-link>
         <div class="article-text">
-          <p class="article-column"><i class="material-icons">bookmark_border</i>{{item.col_title}}</p>
+          <p class="article-column"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</p>
           <h3><router-link :to="{path: 'article', query:{id: item.id}}">{{item.title}}</router-link></h3>
           <div class="article-info">
             <p class="article-brief">{{item.brief}}</p>
@@ -191,6 +191,9 @@ $item-gap-height: 20px;
 .article-column {
   margin-bottom: 15px;
   color: #656565;
+  i {
+    margin-right: 5px;
+  }
 }
 // left
 .masonry-left {

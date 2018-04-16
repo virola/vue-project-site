@@ -10,6 +10,7 @@ import Search from '@/page/Search'
 import Article from '@/page/Article'
 
 // 登录后页面
+import User from '@/page/User'
 import UserIndex from '@/page/user/Index'
 import UserCollect from '@/page/user/Collect'
 import UserInfo from '@/page/user/Info'
@@ -26,7 +27,6 @@ export default new Router({
     },
     {
       path: '/index',
-      name: 'home',
       component: Home,
       children: [
         {
@@ -37,19 +37,22 @@ export default new Router({
     },
     {
       path: '/user',
-      name: 'user',
-      component: UserIndex,
+      component: User,
       children: [
         {
-          path: '/user/collect',
+          path: '',
+          component: UserIndex
+        },
+        {
+          path: 'collect',
           component: UserCollect
         },
         {
-          path: '/user/info',
+          path: 'info',
           component: UserInfo
         },
         {
-          path: '/user/msg',
+          path: 'msg',
           component: UserMsg
         }
       ]

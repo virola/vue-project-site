@@ -11,6 +11,9 @@
 <script>
 export default {
   name: 'column',
+  metaInfo: {
+    title: '栏目'
+  },
   data () {
     return {
       test: '11'

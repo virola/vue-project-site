@@ -11,10 +11,11 @@
 ## dependencies
 - bootstrap
 - sass
-- [axios](https://github.com/axios/axios)
+- [axios](https://github.com/axios/axios) : For ajax request
 - vuex
 - vue-router
-- vue-meta 定义document.title
+- vue-meta : 自定义document.title
+- vue-awesome : 一个 vuejs 的 SVG icon 组件, built-in with Font Awesome icons. 
 
 
 ## Build Setup

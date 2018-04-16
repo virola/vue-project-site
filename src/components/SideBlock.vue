@@ -29,7 +29,7 @@
             <i class="brief">{{item.brief}}</i>
             <i class="date">{{item.date}}</i>
             <i class="date-format">{{item.date_format}}</i>
-            <i class="place"><span class="material-icons">place</span> {{item.place}}</i>
+            <i class="place"><span class="icons"><icon name="map-marker"></icon></span> {{item.place}}</i>
             <span class="bg"></span>
           </router-link>
         </li>
@@ -200,10 +200,9 @@ export default {
         display: none;
       }
     }
-    .material-icons {
+    .icons {
       font-size: 14px;
       color: #d8d8d8;
-      vertical-align: text-top;
     }
   }
   // travel

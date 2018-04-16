@@ -5,7 +5,7 @@
         <!-- slides -->
         <swiper-slide v-for="(item, index) in large" :key="index">
           <div class="article-info">
-            <div class="article-tag"><i class="material-icons">bookmark_border</i>{{item.col_title}}</div>
+            <div class="article-tag"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</div>
             <h3><router-link :to="{path: 'article'}">{{item.title}}</router-link></h3>
             <p>{{item.brief}}</p>
           </div>
@@ -18,8 +18,8 @@
       </swiper>
       <!-- Optional controls -->
       <!-- <div class="swiper-pagination"  slot="pagination"></div> -->
-      <div class="swiper-button-prev swiper-button" slot="button-prev"><i class="material-icons">keyboard_arrow_left</i></div>
-      <div class="swiper-button-next swiper-button" slot="button-next"><i class="material-icons">keyboard_arrow_right</i></div>
+      <div class="swiper-button-prev swiper-button" slot="button-prev"><i class="icons"><icon name="angle-left"></icon></i></div>
+      <div class="swiper-button-next swiper-button" slot="button-next"><i class="icons"><icon name="angle-right"></icon></i></div>
       <!-- <div class="swiper-scrollbar"   slot="scrollbar"></div> -->
     </div>
     <div class="block-right fl">
@@ -31,7 +31,7 @@
                 <img :src="item.pic" :alt="item.title">
               </router-link>
             </div>
-            <div class="article-tag"><i class="material-icons">bookmark_border</i>{{item.col_title}}</div>
+            <div class="article-tag"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</div>
             <h4><router-link :to="{path: 'article', query:{id: item.id}}">{{item.title}}</router-link></h4>
           </li>
         </ul>
@@ -40,7 +40,7 @@
         <div class="clear">
           <ul class="article-text fl">
             <li v-bind:class="{active: tabshow == index}" v-for="(item, index) in rightbottom" :key="index" @mouseover="tabshow = index">
-              <div class="article-tag"><i class="material-icons">bookmark_border</i>{{item.col_title}}</div>
+              <div class="article-tag"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</div>
               <h4><router-link :to="{path: 'article', query:{id: item.id}}">{{item.title}}</router-link></h4>
               <p class="article-date">{{item.date_format}}</p>
               <i class="caret caret-right"></i>
@@ -151,9 +151,7 @@ export default {
     color: #656565;
     i {
       margin-right: 5px;
-      font-size: 16px;
       color: #9b9b9b;
-      vertical-align: text-top;
     }
   }
   
@@ -169,8 +167,10 @@ export default {
     border-radius: 50%;
     box-shadow: 0 0 4px #aaa;
     outline: 0;
-
+  
     i {
+      display: block;
+      width: 100%;
       color: #ccc;
     }
   }

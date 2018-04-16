@@ -4,7 +4,10 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import store from './store'
-// import VueRouterTitle from 'vue-router-title'
+
+// icons
+import 'vue-awesome/icons'
+import Icon from 'vue-awesome/components/Icon'
 
 // 公共组件
 import Header from './components/Header'
@@ -15,10 +18,8 @@ Vue.config.productionTip = false
 Vue.component('common-header', Header)
 Vue.component('common-footer', Footer)
 
-// Vue.use(VueRouterTitle, {
-//   router,
-//   defaultTitle: '有方的首页'
-// })
+// 全局注册（在 `main .js` 文件中）
+Vue.component('icon', Icon)
 
 /* eslint-disable no-new */
 new Vue({

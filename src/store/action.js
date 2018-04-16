@@ -1,7 +1,6 @@
 import { getUser } from '../service/getData'
 
 export default {
-
   async getUserInfo ({
     commit,
     state
