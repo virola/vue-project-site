@@ -21,7 +21,7 @@
           <side-block data-key="zhaopin"></side-block>
           <side-block data-key="travelApply"></side-block>
           <side-block data-key="hot"></side-block>
-          <side-block data-key="feed"></side-block>          
+          <side-block data-key="feed"></side-block>
         </aside>
       </section>
       <common-footer></common-footer>

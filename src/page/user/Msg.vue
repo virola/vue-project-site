@@ -13,8 +13,7 @@
         <div class="form-check-inline">
           <button class="btn btn-primary" @click="markAsRead">标记已读</button>
         </div>
-        
-      </div>      
+      </div>
       <ul class="msg-list">
         <li v-for="(item, index) in list" :key="index" class="clear">
           <div class="form-check form-check-inline">
@@ -44,7 +43,7 @@ export default {
   components: {
     Pager
   },
-  created() {
+  created () {
     this.initData()
   },
   watch: {
@@ -61,7 +60,7 @@ export default {
     }
   },
   methods: {
-    async initData() {
+    async initData () {
       this.type = +this.$route.query.type || 0
       this.page = +this.$route.query.page || 1
       let fetchData = await getMsgList(this.type, this.page)
@@ -70,7 +69,7 @@ export default {
     },
     goPage (params) {
       let query = {
-        type: this.type, 
+        type: this.type,
         page: params.page
       }
       this.$router.push({query: query})

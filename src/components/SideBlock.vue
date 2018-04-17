@@ -1,6 +1,6 @@
 <template>
   <!-- A side block -->
-  <section class="side-box" v-if="tplData.data && tplData.data.list && tplData.data.list.length">
+  <section class="side-box" v-if="tplData.data">
     <h4 class="side-title">{{tplData.title}}</h4>
     <div class="side-content">
       <!-- tags -->
@@ -34,8 +34,6 @@
           </router-link>
         </li>
       </ul>
-
-      
     </div>
   </section>
 </template>
@@ -78,7 +76,7 @@ const SIDE_DATA = {
     style: 20,
     api: '',
     // data 必须有数据block才会显示...
-    data: { list: [1]}
+    data: {}
   }
 }
 
@@ -105,7 +103,7 @@ export default {
       const sidedata = SIDE_DATA[this.dataKey]
       for (const k in sidedata) {
         if (sidedata.hasOwnProperty(k)) {
-          this.tplData[k] = sidedata[k];
+          this.tplData[k] = sidedata[k]
         }
       }
       // console.log(this.tplData)
@@ -261,4 +259,3 @@ export default {
   }
 }
 </style>
-

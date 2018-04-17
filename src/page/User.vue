@@ -63,9 +63,8 @@ export default {
     'userInfo': function () {
       if (this.userInfo) {
         this.username = this.userInfo.username
-      }
-      else {
-        this.$router.push({path: '/'});
+      } else {
+        this.$router.push({path: '/'})
       }
     }
   },

@@ -44,8 +44,7 @@
                   <img src="../assets/img/avatar.jpeg" alt="avatar">
                 </div>
                 <div class="comment-info">
-                  <span class="username">{{item.username}}</span> 
-                  <span class="date">{{item.datetime}}</span>
+                  <span class="username">{{item.username}}</span>&nbsp;<span class="date">{{item.datetime}}</span>
                 </div>
                 <div class="comment-content">{{item.content}}</div>
               </li>
@@ -103,8 +102,7 @@ export default {
     }
   },
   methods: {
-    async initData() {
-
+    async initData () {
       const id = this.$route.query.id
       let data = await getArticleData(id)
       this.article = data.article
@@ -112,7 +110,7 @@ export default {
       let commentData = await getArticleComment(id)
       this.comments = commentData.list
     },
-    async submitComment() {
+    async submitComment () {
       if (this.login) {
         const content = this.commentContent
         const username = this.userInfo.username
@@ -129,7 +127,6 @@ export default {
         // 未登录，去登录
         this.$router.push({ path: '/login' })
       }
-      
     }
   }
 }
@@ -167,7 +164,7 @@ export default {
 }
 .content {
   color: #656565;
-  font-size: 16px; 
+  font-size: 16px;
 }
 .operate {
   margin: 20px 0;

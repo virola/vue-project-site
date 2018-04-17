@@ -74,7 +74,7 @@ export default {
     },
     pageInit (newVal) {
       // console.log('init:' + newVal)
-      if(this.pageCurrent !== newVal) {
+      if (this.pageCurrent !== newVal) {
         this.pageCurrent = newVal
       }
     }

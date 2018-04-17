@@ -44,10 +44,10 @@ const showBack = callback => {
     oldScrollTop = document.body.scrollTop
     moveEnd()
   }, { passive: true })
-  
+
   const moveEnd = () => {
     requestFram = requestAnimationFrame(() => {
-      if (document.body.scrollTop != oldScrollTop) {
+      if (document.body.scrollTop !== oldScrollTop) {
         oldScrollTop = document.body.scrollTop
         moveEnd()
       } else {
@@ -57,14 +57,11 @@ const showBack = callback => {
     })
   }
 
-  //判断是否达到目标点
+  // 判断是否达到目标点
   const showBackFun = () => {
     let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop)
-    if (scrollTop > TOP) {
-      callback(true)
-    } else {
-      callback(false)
-    }
+    let status = scrollTop > TOP
+    callback(status)
   }
 }
 
@@ -76,9 +73,9 @@ export default {
     }
   },
   created () {
-    //开始监听scrollTop的值，达到一定程度后显示返回顶部按钮
+    // 开始监听scrollTop的值，达到一定程度后显示返回顶部按钮
     showBack(status => {
-      this.showBackStatus = status;
+      this.showBackStatus = status
     })
   },
   methods: {

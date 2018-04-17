@@ -44,14 +44,14 @@ export default {
   components: {
     Pager
   },
-  created() {
+  created () {
     this.initData()
   },
   watch: {
     '$route': 'initData'
   },
   methods: {
-    async initData() {
+    async initData () {
       this.type = +this.$route.query.type || 0
       this.page = +this.$route.query.page || 1
       let fetchData = await getCollectList('', this.type, this.page)
@@ -62,7 +62,7 @@ export default {
     goPage (params) {
       // this.page = params.page
       let query = {
-        type: this.type, 
+        type: this.type,
         page: params.page
       }
       // console.log(query)

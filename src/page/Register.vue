@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <section class="container user-page">
       <h2 class="logo center"><router-link to="/"><img src="../assets/img/logo.png"></router-link></h2>
       <div class="user-link">
@@ -17,7 +16,6 @@
             <div class="invalid-feedback">
             {{validation.phone.msg}}
             </div>
-
           </div>
         </div>
 
@@ -31,9 +29,7 @@
               {{validation.mcode.msg}}
             </div>
           </div>
-          
         </div>
-        
         <div class="form-group has-feedback" :class="{'was-validated': validation.password.invalid}">
           <div class="input-group" :class="{'is-invalid': validation.password.invalid}">
             <div class="input-group-prepend">
@@ -45,7 +41,6 @@
             </div>
           </div>
         </div>
-
         <div class="form-group has-feedback" :class="{'was-validated': validation.passwordrepeat.invalid}">
           <div class="input-group" :class="{'is-invalid': validation.passwordrepeat.invalid}">
             <div class="input-group-prepend">
@@ -71,7 +66,7 @@
 
 <script>
 import {userRegister} from '@/service/getData'
-import {mapState, mapMutations} from 'vuex'
+import {mapMutations} from 'vuex'
 
 export default {
   name: 'register',
@@ -105,37 +100,35 @@ export default {
     })
   },
   computed: {
-    //判断手机号码
+    // 判断手机号码
     rightPhoneNumber () {
       return /^1\d{10}$/gi.test(this.phone)
     }
   },
   methods: {
     ...mapMutations([
-      'setUser',
+      'setUser'
     ]),
     async onSubmit () {
       let valids = this.validation
       valids.form = true
-      valids.phone.invalid = !this.phone || !this.rightPhoneNumber ? true : false
+      valids.phone.invalid = !this.phone || !this.rightPhoneNumber
       valids.phone.msg = '请输入手机号码'
 
-      valids.mcode.invalid = !this.mcode ? true : false
+      valids.mcode.invalid = !this.mcode
       valids.mcode.msg = '请输入验证码'
 
-      valids.password.invalid = !this.password ? true : false
+      valids.password.invalid = !this.password
       valids.password.msg = '请输入密码'
-      
       if (!this.passwordrepeat) {
         valids.passwordrepeat.invalid = true
         valids.passwordrepeat.msg = '请输入密码'
       } else if (this.passwordrepeat !== this.password) {
-        valids.passwordrepeat.invalid =  true
+        valids.passwordrepeat.invalid = true
         valids.passwordrepeat.msg = '两次密码输入不一致'
       } else {
-        valids.passwordrepeat.invalid =  false
+        valids.passwordrepeat.invalid = false
       }
-      
       let formvalidate = true
       for (let item in valids) {
         if (valids[item].invalid) {
@@ -145,28 +138,25 @@ export default {
       if (!formvalidate) {
         return
       }
-      
       let data = {
         phone: this.phone,
         password: this.password
       }
-      //用户注册
+      // 用户注册
       let resp = await userRegister(data)
       let userInfo = resp.userInfo
-      console.log(userInfo)
+      // console.log(userInfo)
       if (!userInfo.user_id || userInfo.user_id < 0) {
         this.formMsg = userInfo.message || '注册失败'
-      }
-      else {
+      } else {
         this.setUser(userInfo)
         this.$router.go(-1)
       }
     },
-
     getMobileCode () {
       // 获取验证码
-      let phone = this.phone;
-      if (!phone) {
+      // let phone = this.phone
+      if (!this.phone) {
         this.validation.phone.invalid = true
         this.validation.phone.msg = '请输入手机号码'
       }

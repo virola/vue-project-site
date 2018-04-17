@@ -55,7 +55,7 @@ export default {
     'dataset': 'initData'
   },
   methods: {
-    async initData() {
+    async initData () {
       const dataset = this.dataset || {
         page: 1,
         category: 0
@@ -72,25 +72,21 @@ export default {
       let data = []
       let group = []
       for (let i = 0; i < list.length; i++) {
-        let groupIndex = i % 5;
+        let groupIndex = i % 5
         // 第一个值 5n + 1
         if (groupIndex === 0) {
-          group = [];
+          group = []
         }
-        group[groupIndex] = list[i];
-        
+        group[groupIndex] = list[i]
         // 5个的最后一个 5n + 0，组成一组放入data
         // 或者当前是最后一个元素
         if (groupIndex === 4 || i === list.length - 1) {
-          data.push(group);
+          data.push(group)
         }
       }
-      console.log(data)
-
+      // console.log(data)
       return data
     }
-  },
-  computed: {
   }
 }
 </script>
@@ -127,7 +123,7 @@ $item-gap-height: 20px;
   width: $item-right-width;
 
   .list-item {
-    @include wh($item-right-width, $item-right-height); 
+    @include wh($item-right-width, $item-right-height);
   }
 }
 
@@ -221,4 +217,3 @@ $item-gap-height: 20px;
 }
 
 </style>
-

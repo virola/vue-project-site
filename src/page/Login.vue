@@ -18,7 +18,6 @@
             </div>
           </div>
         </div>
-        
         <div class="form-group has-feedback">
           <div class="input-group" :class="{'is-invalid': validation.password}">
             <div class="input-group-prepend">
@@ -31,7 +30,6 @@
           </div>
         </div>
         <p class="pass-link"><router-link to="/password">忘记密码</router-link></p>
-
         <div class="form-group">
           <input type="submit" value="立即登录" class="form-control btn btn-primary">
         </div>
@@ -45,7 +43,7 @@
 </template>
 <script>
 import {userLogin} from '@/service/getData'
-import {mapState, mapMutations} from 'vuex'
+import {mapMutations} from 'vuex'
 
 export default {
   name: 'login',
@@ -74,7 +72,7 @@ export default {
   },
   methods: {
     ...mapMutations([
-      'setUser',
+      'setUser'
     ]),
     async onSubmit () {
       let valids = this.validation
@@ -93,13 +91,12 @@ export default {
         username: this.username,
         password: this.password
       }
-      //用户名登录
+      // 用户名登录
       let resp = await userLogin(data.username, data.password)
       let userInfo = resp.userInfo
       if (!userInfo.user_id || userInfo.user_id < 0) {
         this.formMsg = userInfo.message || '登录失败'
-      }
-      else {
+      } else {
         this.setUser(userInfo)
         // redirect 重定向
         this.$router.push({ path: this.redirectTo || '/' })

@@ -52,7 +52,6 @@
             </li>
           </ul>
         </div>
-        
       </div>
     </div>
   </section>
@@ -104,7 +103,7 @@ export default {
     // this.swiper.slideTo(3, 1000, false)
   },
   methods: {
-    async initData() {
+    async initData () {
       const data = await getBannerData()
       // console.log(data);
       this.large = data.newlist
@@ -154,7 +153,6 @@ export default {
       color: #9b9b9b;
     }
   }
-  
 }
 .block-new {
   width: 475px;
@@ -167,7 +165,6 @@ export default {
     border-radius: 50%;
     box-shadow: 0 0 4px #aaa;
     outline: 0;
-  
     i {
       display: block;
       width: 100%;
@@ -203,7 +200,6 @@ export default {
 }
 .block-travel {
   margin: 20px 0;
-  
   .article-text {
     width: 195px;
     li {

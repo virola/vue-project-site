@@ -201,10 +201,10 @@ export default {
         this.styles = 'style-common'
       }
     },
-    //退出登录
+    // 退出登录
     async userLogout () {
       // vuex clear
-      this.logout();
+      this.logout()
       removeStore('user_id')
       await userSignout()
     }

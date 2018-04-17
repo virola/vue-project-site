@@ -61,8 +61,7 @@ export default {
     ...mapState([
       'userInfo', 'login'
     ])
-  },
-
+  }
 }
 </script>
 <style lang="scss" scoped>
