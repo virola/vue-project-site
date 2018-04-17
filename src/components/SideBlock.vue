@@ -124,6 +124,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+@import 'src/assets/mixin';
 .side-content {
   li {
     padding: 10px;
@@ -250,6 +251,12 @@ export default {
       border: 1px solid #888;
       padding: 0 12px;
       margin: 0 10px 10px 0;
+      &:hover {
+        text-decoration: none;
+        background: $main-color;
+        border-color: $main-color;
+        color: #fff;
+      }
     }
   }
 }

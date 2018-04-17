@@ -35,7 +35,10 @@ const fetch = async (url, params = {}, type = 'get') => {
 const URL_API = {
   // get requests
   'ARTICLE_LIST': 'api/get/list.json',
-  'ARTICLE_DATA': 'api/get/article/1.json',
+  'ARTICLE_DATA' () {
+    const list = ['api/get/article/2.json', 'api/get/article/1.json', 'api/get/article/3.json']
+    return list[Math.round(Math.random() * (list.length - 1))]
+  },
   'ARTICLE_COMMENTS': 'api/get/article/comments.json',
   'BANNER_DATA': 'api/get/banner.json',
   'SIDE_ZHAOPIN': 'api/get/side/zhaopin.json',
@@ -45,6 +48,8 @@ const URL_API = {
   'SIDE_TAGS': 'api/get/side/tags.json',
   'USER_DATA': 'api/get/user.json',
   'USER_LOGOUT': 'api/get/logout.json',
+  'USER_COLLECT': 'api/get/user/collect.json',
+  'USER_MSG': 'api/get/user/msg.json',
   // post requests
   'USER_LOGIN': 'api/post/login',
   'USER_REGISTER': 'api/post/register'
@@ -112,10 +117,25 @@ export const userSignout = () => fetch(URL_API.USER_LOGOUT)
  * 根据id获取文章数据
  * @param {number} id article id
  */
-export const getArticleData = (id) => fetch(URL_API.ARTICLE_DATA, {id})
+export const getArticleData = (id) => fetch(URL_API.ARTICLE_DATA(), {id})
 
 /**
  * 根据id获取文章评论
  * @param {number} id 文章ID
  */
 export const getArticleComment = (id) => fetch(URL_API.ARTICLE_COMMENTS, {id})
+
+/**
+ * 根据用户ID获取收藏列表
+ * @param {number} userId 用户ID，为空默认获取登录用户
+ * @param {number} type 收藏类型，有 1文章、2视频、3旅行报名、4行业资讯
+ * @param {number} page 第几页
+ */
+export const getCollectList = (userId = '', type = 0, page = 1) => fetch(URL_API.USER_COLLECT, {userId, type, page})
+
+/**
+ * 获取用户消息列表
+ * @param {number} all 是否显示所有消息， 0 显示未读消息， 1显示已读消息
+ * @param {number} page 第几页
+ */
+export const getMsgList = (all = 0, page = 0) => fetch(URL_API.USER_MSG, {all, page})

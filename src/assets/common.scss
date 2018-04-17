@@ -170,8 +170,10 @@ $main-width: $page-width - $side-width - $main-side-gap - 1px;
 
   i {
     @include center;
+    -webkit-transform: translate(-45%, -50%);
+    transform: translate(-45%, -50%);
     color: #fff;
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 
@@ -180,5 +182,42 @@ $main-width: $page-width - $side-width - $main-side-gap - 1px;
   .content p {
     font-size: 16px;
     margin: 20px 0;
+  }
+}
+
+// pager 翻页组件
+.pager-wrap {
+  padding: 20px 0;
+  font-size: 12px;
+  a, strong {
+    float: left;
+    width: 28px;
+    height: 28px;
+    margin-right: 6px;
+    font-size: 12px;
+    line-height: 26px;
+    text-align: center;
+  }
+
+  a {
+    cursor: pointer;
+    color: $main-color;
+    border: 1px solid #ddd;
+    @include borderRadius(2px);
+    &:hover {
+      border-color: $main-color;
+    }
+    &.active {
+      background: $main-color;
+      border-color: $main-color;
+      color: #fff;
+      &:hover {
+        color: #fff;
+      }
+    }
+  }
+  strong {
+    color: #aaa;
+    font-size: 14px;
   }
 }

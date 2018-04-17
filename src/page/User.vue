@@ -42,7 +42,7 @@
   </div>
 </template>
 <script>
-import {mapState, mapActions, mapMutations} from 'vuex'
+import {mapState} from 'vuex'
 
 export default {
   metaInfo: {
@@ -51,16 +51,12 @@ export default {
   data () {
     return {
       username: '',
-      editting: false,
-      msg: 'Hello!'
+      editting: false
     }
-  },
-  created () {
-    this.getUserInfo()
   },
   computed: {
     ...mapState([
-      'userInfo'
+      'userInfo', 'login'
     ])
   },
   watch: {
@@ -74,9 +70,6 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'getUserInfo'
-    ]),
     submitEdit () {
       this.editting = false
       // submit edit

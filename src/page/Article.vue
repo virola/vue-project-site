@@ -28,7 +28,7 @@
             <div class="comment-textbox">
               <form action="#" class="has-feedback" v-on:submit.prevent="submitComment">
                 <div class="textbox-group">
-                  <textarea class="form-control" v-model="commentContent" required name="content" id="user-content" rows="10"></textarea>
+                  <textarea class="form-control" v-model="commentContent" required name="content" id="user-content" rows="10" :disabled="!login"></textarea>
                   <div class="textbox-btn">
                     <input class="btn btn-primary btn-sm" type="submit" :value="getCommentBtn">
                   </div>
@@ -63,6 +63,7 @@
 </template>
 
 <script>
+import {mapState} from 'vuex'
 import SideBlock from '@/components/sideblock'
 import {getArticleData, getArticleComment} from '../service/getData'
 
@@ -73,7 +74,6 @@ export default {
   },
   data () {
     return {
-      userInfo: null,
       article: {
         title: '',
         content: ''
@@ -92,17 +92,20 @@ export default {
   },
   mounted () {
     // 保证进入页面时显示focus在最顶端
-    document.body.scrollIntoView()
+    // document.body.scrollIntoView()
   },
   computed: {
+    ...mapState([
+      'userInfo', 'login'
+    ]),
     getCommentBtn () {
-      return this.userInfo && this.userInfo.isLogin ? '提交评论' : '登录评论'
+      return this.login && this.login ? '提交评论' : '登录评论'
     }
   },
   methods: {
     async initData() {
+
       const id = this.$route.query.id
-      // console.log(id);
       let data = await getArticleData(id)
       this.article = data.article
 
@@ -110,15 +113,23 @@ export default {
       this.comments = commentData.list
     },
     async submitComment() {
-      const content = this.commentContent
-      const username = 'test'
-      const datetime = new Date().toLocaleString()
-      // todo...
-      this.comments.unshift({
-        username,
-        content,
-        datetime
-      })
+      if (this.login) {
+        const content = this.commentContent
+        const username = this.userInfo.username
+        const datetime = new Date().toLocaleString()
+        // post api todo...
+        this.comments.unshift({
+          username,
+          content,
+          datetime
+        })
+        // 提交后清空
+        this.commentContent = ''
+      } else {
+        // 未登录，去登录
+        this.$router.push({ path: '/login' })
+      }
+      
     }
   }
 }
@@ -195,7 +206,6 @@ export default {
 
     textarea {
       border: 0;
-      background: #fff;
     }
     .textbox-btn {
       height: 40px;

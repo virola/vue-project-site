@@ -318,7 +318,7 @@ export default {
     }
   }
 }
-.router-link-exact-active {
+.link-active {
   font-weight: bold;
 }
 .user-icon {

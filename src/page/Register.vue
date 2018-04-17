@@ -5,7 +5,7 @@
       <h2 class="logo center"><router-link to="/"><img src="../assets/img/logo.png"></router-link></h2>
       <div class="user-link">
         <router-link :to="{path: '/login', query: {redirectTo: redirectTo}}">登录</router-link>
-        <router-link :to="{path: '/register', query: {redirectTo: redirectTo}}" class="router-link-active">注册</router-link>
+        <router-link :to="{path: '/register', query: {redirectTo: redirectTo}}" class="link-active">注册</router-link>
       </div>
       <form novalidate action="#" class="needs-validation" :class="{'was-validated': validation.form}" v-on:submit.prevent="onSubmit">
         <div class="form-group has-feedback" :class="{'was-validated': validation.phone.invalid}">

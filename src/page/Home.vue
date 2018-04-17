@@ -7,15 +7,15 @@
           <div class="column-panel">
             <ul class="clear">
               <li><router-link to="/index" exact>热门</router-link></li>
-              <li><router-link to="/index/topic" exact>专题</router-link></li>
-              <li><router-link to="/index/person" exact>人物</router-link></li>
-              <li><router-link to="/index/project" exact>项目</router-link></li>
-              <li><router-link to="/index/counsel" exact>咨询</router-link></li>
-              <li><router-link to="/index/deep" exact>深度</router-link></li>
-              <li><router-link to="/index/video" exact>视频</router-link></li>
+              <li><router-link to="/index?column=1" exact>专题</router-link></li>
+              <li><router-link to="/index?column=2" exact>人物</router-link></li>
+              <li><router-link to="/index?column=3" exact>项目</router-link></li>
+              <li><router-link to="/index?column=4" exact>咨询</router-link></li>
+              <li><router-link to="/index?column=5" exact>深度</router-link></li>
+              <li><router-link to="/index?column=6" exact>视频</router-link></li>
             </ul>
           </div>
-          <articles></articles>
+          <articles :dataset="listQuery"></articles>
         </div>
         <aside class="side-panel fr">
           <side-block data-key="zhaopin"></side-block>
@@ -37,6 +37,7 @@ export default {
   name: 'home',
   data () {
     return {
+      listQuery: {},
       msg: 'Welcome to Your Vue.js App'
     }
   },
@@ -44,10 +45,19 @@ export default {
     Banner, Articles, SideBlock
   },
   created () {
+    this.initData()
   },
   watch: {
     // 如果路由有变化，会再次执行该方法
-    // '$route': 'fetchData'
+    '$route': 'initData'
+  },
+  methods: {
+    initData () {
+      this.listQuery = {
+        category: this.$route.query.column || 0,
+        page: this.$route.query.pageNum || 0
+      }
+    }
   }
 }
 </script>
@@ -73,7 +83,7 @@ export default {
       &:hover {
         border-bottom: 2px solid #000;
       }
-      &.router-link-active {
+      &.link-active {
         color: #000;
         border-bottom: 2px solid #000;
       }

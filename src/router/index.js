@@ -20,6 +20,8 @@ Vue.use(Router)
 Vue.use(Meta)
 
 export default new Router({
+  linkActiveClass: 'link-active',
+  linkExactActiveClass: 'link-active',
   routes: [
     {
       path: '/',

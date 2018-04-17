@@ -3,7 +3,7 @@
     <section class="container user-page">
       <h2 class="logo center"><router-link to="/"><img src="../assets/img/logo.png"></router-link></h2>
       <div class="user-link">
-        <router-link :to="{path: '/login', query: {redirectTo: redirectTo}}" class="router-link-active">登录</router-link>
+        <router-link :to="{path: '/login', query: {redirectTo: redirectTo}}" class="link-active">登录</router-link>
         <router-link :to="{path: '/register', query: {redirectTo: redirectTo}}">注册</router-link>
       </div>
       <form action="#" novalidate class="needs-validation" :class="{'was-validated': validation.form}"  v-on:submit.prevent="onSubmit">

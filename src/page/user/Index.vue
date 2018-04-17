@@ -48,30 +48,20 @@
   </div>
 </template>
 <script>
-import {mapState, mapActions, mapMutations} from 'vuex'
+import {mapState} from 'vuex'
 
 export default {
   metaInfo: {
     title: '用户中心'
   },
   data () {
-    return {
-      msg: 'Hello!'
-    }
-  },
-  created () {
-    this.getUserInfo()
+    return {}
   },
   computed: {
     ...mapState([
-      'userInfo'
+      'userInfo', 'login'
     ])
   },
-  methods: {
-    ...mapActions([
-      'getUserInfo'
-    ])
-  }
 
 }
 </script>

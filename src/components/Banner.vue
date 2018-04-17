@@ -230,6 +230,7 @@ export default {
   .article-pic {
     width: 405px;
     height: 230px;
+    overflow: hidden;
   }
   .article-date {
     font-size: 12px;

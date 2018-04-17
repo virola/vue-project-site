@@ -51,6 +51,9 @@ export default {
   created () {
     this.initData()
   },
+  watch: {
+    'dataset': 'initData'
+  },
   methods: {
     async initData() {
       const dataset = this.dataset || {

@@ -16,12 +16,79 @@
         <p>版权所有有方 粤ICP备13041838号 </p>
       </div>
     </div>
+    <div class="back-top" @click="backTop" v-if="showBackStatus"><icon name="arrow-up"></icon></div>
   </footer>
 </template>
 
 <script>
+/**
+ * 显示返回顶部按钮，开始、结束、运动 三个过程中调用函数判断是否达到目标点
+ */
+const showBack = callback => {
+  const TOP = 300
+  let requestFram
+  let oldScrollTop
+
+  document.addEventListener('scroll', () => {
+    showBackFun()
+  }, false)
+  document.addEventListener('touchstart', () => {
+    showBackFun()
+  }, { passive: true })
+
+  document.addEventListener('touchmove', () => {
+    showBackFun()
+  }, { passive: true })
+
+  document.addEventListener('touchend', () => {
+    oldScrollTop = document.body.scrollTop
+    moveEnd()
+  }, { passive: true })
+  
+  const moveEnd = () => {
+    requestFram = requestAnimationFrame(() => {
+      if (document.body.scrollTop != oldScrollTop) {
+        oldScrollTop = document.body.scrollTop
+        moveEnd()
+      } else {
+        cancelAnimationFrame(requestFram)
+      }
+      showBackFun()
+    })
+  }
+
+  //判断是否达到目标点
+  const showBackFun = () => {
+    let scrollTop = Math.max(document.documentElement.scrollTop, document.body.scrollTop)
+    if (scrollTop > TOP) {
+      callback(true)
+    } else {
+      callback(false)
+    }
+  }
+}
+
 export default {
-  name: 'common-footer'
+  name: 'common-footer',
+  data () {
+    return {
+      showBackStatus: false
+    }
+  },
+  created () {
+    //开始监听scrollTop的值，达到一定程度后显示返回顶部按钮
+    showBack(status => {
+      this.showBackStatus = status;
+    })
+  },
+  methods: {
+    backTop () {
+      // todo
+      // animation?
+      document.body.scrollTop = 0
+      document.documentElement.scrollTop = 0
+    }
+  }
 }
 </script>
 <style lang="scss" scoped>
@@ -42,5 +109,18 @@ export default {
 }
 .f-logo {
   margin: 10px 80px 0 0;
+}
+.back-top {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  color: #fff;
+  background: #aaaaaa;
+  font-size: 18px;
+  line-height: 40px;
+  cursor: pointer;
 }
 </style>
