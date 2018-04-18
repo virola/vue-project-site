@@ -6,6 +6,7 @@ import Home from '@/page/Home'
 import Column from '@/page/Column'
 import Login from '@/page/Login'
 import Register from '@/page/Register'
+import Password from '@/page/Password'
 import Search from '@/page/Search'
 import Article from '@/page/Article'
 
@@ -72,6 +73,11 @@ export default new Router({
       path: '/register',
       name: 'register',
       component: Register
+    },
+    {
+      path: '/password',
+      name: 'password',
+      component: Password
     },
     {
       path: '/search',

@@ -21,6 +21,9 @@
     display: inline-block;
     padding: 5px 10px;
     margin: 0 25px;
+    &:hover {
+      text-decoration: none;
+    }
     &.link-active {
       border-bottom: 2px solid #0d2e3c;
     }

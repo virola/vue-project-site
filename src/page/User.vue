@@ -5,7 +5,7 @@
       <section class="clear" v-if="userInfo">
         <aside class="user-sider fl">
           <div class="user-avatar">
-            <router-link to="/user/avatar">
+            <router-link to="/user">
               <img :src="userInfo.avatar" :alt="userInfo.username">
               <span>修改头像</span>
             </router-link>
