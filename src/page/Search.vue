@@ -187,4 +187,7 @@ export default {
 .search-result {
   width: 800px;
 }
+.result-info {
+  margin: 20px 0 0;
+}
 </style>
