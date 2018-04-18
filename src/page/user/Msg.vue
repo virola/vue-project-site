@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="title">
+    <h3 class="tab-title">
       <router-link to="/user/msg" :class="{active: type == 0}">未读消息</router-link>
       <router-link to="/user/msg?type=1" :class="{active: type == 1}">已读消息</router-link>
     </h3>

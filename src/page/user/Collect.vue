@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="title">
+    <h3 class="tab-title">
       <router-link to="/user/collect" :class="{'active': type == 0}">全部</router-link>
       <router-link to="/user/collect?type=1" :class="{'active': type == 1}">文章</router-link>
       <router-link to="/user/collect?type=2" :class="{'active': type == 2}">视频</router-link>

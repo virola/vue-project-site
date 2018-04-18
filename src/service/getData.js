@@ -35,6 +35,8 @@ const fetch = async (url, params = {}, type = 'get') => {
 const URL_API = {
   // get requests
   'ARTICLE_LIST': 'api/get/list.json',
+  'SEARCH_LIST': 'api/get/list.json',
+  'TAG_LIST': 'api/get/side/tags.json',
   'ARTICLE_DATA' () {
     const list = ['api/get/article/2.json', 'api/get/article/1.json', 'api/get/article/3.json']
     return list[Math.round(Math.random() * (list.length - 1))]
@@ -66,10 +68,31 @@ export const getArticleList = (params) => fetch(URL_API.ARTICLE_LIST, {
 })
 
 /**
+ * 根据关键字搜索文章列表
+ * @param {string} keyword 关键字
+ * @param {Number} category 栏目id
+ * @param {Number} page 当前页码
+ */
+export const getSearchList = (params) => fetch(URL_API.SEARCH_LIST, {
+  'keyword': params.keyword,
+  'cate_id': params.category,
+  'page_no': params.page
+})
+
+/**
  * 获取首页banner展示数据
  */
 export const getBannerData = () => fetch(URL_API.BANNER_DATA)
 
+/**
+ * 获取热门标签
+ */
+export const getTagListData = () => fetch(URL_API.TAG_LIST)
+
+/**
+ * 获取侧边栏数据
+ * @param {string} key 数据类型
+ */
 export const getSideData = (key) => {
   let url = ''
   switch (key) {

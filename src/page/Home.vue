@@ -4,16 +4,14 @@
       <banner></banner>
       <section class="main container clear">
         <div class="main-panel fl">
-          <div class="column-panel">
-            <ul class="clear">
-              <li><router-link to="/index" exact>热门</router-link></li>
-              <li><router-link to="/index?column=1" exact>专题</router-link></li>
-              <li><router-link to="/index?column=2" exact>人物</router-link></li>
-              <li><router-link to="/index?column=3" exact>项目</router-link></li>
-              <li><router-link to="/index?column=4" exact>咨询</router-link></li>
-              <li><router-link to="/index?column=5" exact>深度</router-link></li>
-              <li><router-link to="/index?column=6" exact>视频</router-link></li>
-            </ul>
+          <div class="tab-title">
+            <router-link to="/index" :class="{active: type == 0}">热门</router-link>
+            <router-link to="/index?type=1" :class="{active: type == 1}">专题</router-link>
+            <router-link to="/index?type=2" :class="{active: type == 2}">人物</router-link>
+            <router-link to="/index?type=3" :class="{active: type == 3}">项目</router-link>
+            <router-link to="/index?type=4" :class="{active: type == 4}">咨询</router-link>
+            <router-link to="/index?type=5" :class="{active: type == 5}">深度</router-link>
+            <router-link to="/index?type=6" :class="{active: type == 6}">视频</router-link>
           </div>
           <articles :dataset="listQuery"></articles>
         </div>
@@ -37,8 +35,9 @@ export default {
   name: 'home',
   data () {
     return {
+      type: 0,
       listQuery: {},
-      msg: 'Welcome to Your Vue.js App'
+      page: 0
     }
   },
   components: {
@@ -53,9 +52,11 @@ export default {
   },
   methods: {
     initData () {
+      this.type = this.$route.query.type || 0
+      this.page = this.$route.query.pageNum || 0
       this.listQuery = {
-        category: this.$route.query.column || 0,
-        page: this.$route.query.pageNum || 0
+        category: this.type,
+        page: this.page
       }
     }
   }
@@ -67,27 +68,8 @@ export default {
   width: 1030px;
   margin-top: 70px;
 }
-.column-panel {
-  border-bottom: 1px solid #ccc;
+.tab-title {
   margin-bottom: 20px;
-  margin-top: 1px;
-
-  li {
-    width: 14%;
-    float: left;
-    text-align: center;
-    a {
-      display: inline-block;
-      line-height: 40px;
-      text-decoration: none;
-      &:hover {
-        border-bottom: 2px solid #000;
-      }
-      &.link-active {
-        color: #000;
-        border-bottom: 2px solid #000;
-      }
-    }
-  }
 }
+
 </style>

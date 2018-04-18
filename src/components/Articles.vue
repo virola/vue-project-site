@@ -1,4 +1,4 @@
-// 文章列表的组件
+// 竖形显示文章列表的组件。左3右2，5个一组
 <template>
   <section class="section-list list-article masonry clear">
     <ul class="masonry-left">

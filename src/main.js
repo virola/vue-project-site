@@ -26,7 +26,7 @@ import 'vue-awesome/icons/regular/comments'
 import 'vue-awesome/icons/brands/weibo'
 import 'vue-awesome/icons/brands/weixin'
 import 'vue-awesome/icons/brands/qq'
-
+// register icon
 import Icon from 'vue-awesome/components/Icon'
 
 // 公共组件

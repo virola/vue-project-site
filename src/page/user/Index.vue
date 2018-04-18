@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h3 class="title"><span>账户设置</span></h3>
+    <h3 class="tab-title"><span>账户设置</span></h3>
     <div class="main-content" v-if="userInfo">
       <ul class="auth-list">
         <li>
