@@ -41,6 +41,12 @@ const URL_API = {
     const list = ['api/get/article/2.json', 'api/get/article/1.json', 'api/get/article/3.json']
     return list[Math.round(Math.random() * (list.length - 1))]
   },
+  'COLUMN_DATA': (id) => {
+    const list = ['api/get/column/default.json', 'api/get/column/video.json', 'api/get/column/topic.json']
+    // const rnd = Math.round(Math.random() * (list.length - 1))
+    let index = id > 3 ? 0 : id - 1
+    return list[index]
+  },
   'ARTICLE_COMMENTS': 'api/get/article/comments.json',
   'BANNER_DATA': 'api/get/banner.json',
   'SIDE_ZHAOPIN': 'api/get/side/zhaopin.json',
@@ -77,6 +83,14 @@ export const getSearchList = (params) => fetch(URL_API.SEARCH_LIST, {
   'keyword': params.keyword,
   'cate_id': params.category,
   'page_no': params.page
+})
+
+/**
+ * 根据ID获取栏目信息
+ * @param {number} id 栏目ID
+ */
+export const getColumnInfo = (id) => fetch(URL_API.COLUMN_DATA(id), {
+  'cate_id': id
 })
 
 /**
@@ -140,7 +154,7 @@ export const userSignout = () => fetch(URL_API.USER_LOGOUT)
  * 根据id获取文章数据
  * @param {number} id article id
  */
-export const getArticleData = (id) => fetch(URL_API.ARTICLE_DATA(), {id})
+export const getArticleData = (id) => fetch(URL_API.ARTICLE_DATA(), { id })
 
 /**
  * 根据id获取文章评论

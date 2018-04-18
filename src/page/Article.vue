@@ -3,7 +3,7 @@
       <common-header></common-header>
       <section class="container main clear">
         <div class="main-panel fl">
-          <div class="breadcrum"><router-link to="/">首页</router-link><span v-if="article.parent_column_id"> > <router-link :to="{path: '/column', query: {id: article.parent_column_id}}">{{article.parent_column_name}}</router-link></span><span v-if="article.column_id"> > <router-link :to="{path: '/column', query: {id: article.column_id}}">{{article.column_name}}</router-link></span></div>
+          <div class="breadcrum"><router-link to="/">首页</router-link><span v-if="article.parent_column_id"> > <router-link :to="{path: '/column', query: {cid: article.parent_column_id}}">{{article.parent_column_name}}</router-link></span><span v-if="article.column_id"> > <router-link :to="{path: '/column', query: {cid: article.parent_column_id, sid: article.column_id}}">{{article.column_name}}</router-link></span></div>
           <h2 class="title">{{article.title}}</h2>
           <div class="info">
             <span v-if="article.author">作者: {{article.author}}</span>
@@ -91,7 +91,7 @@ export default {
   },
   mounted () {
     // 保证进入页面时显示focus在最顶端
-    // document.body.scrollIntoView()
+    document.body.scrollIntoView()
   },
   computed: {
     ...mapState([

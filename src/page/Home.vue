@@ -64,12 +64,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.main {
-  width: 1030px;
-  margin-top: 70px;
-}
 .tab-title {
   margin-bottom: 20px;
 }
-
 </style>

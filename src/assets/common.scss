@@ -143,6 +143,10 @@ $page-width: 1000px;
 $side-width: 252px;
 $main-side-gap: 20px;
 $main-width: $page-width - $side-width - $main-side-gap - 1px;
+.main {
+  width: 1030px;
+  margin-top: 70px;
+}
 .side-panel {
   width: $side-width;
 }

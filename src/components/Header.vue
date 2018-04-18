@@ -29,20 +29,20 @@
             </div>
             <!-- user sub over -->
           </div>
-          <router-link to="/contribute" class="panel-item btn btn-primary post-btn">投稿</router-link>
+          <router-link to="/" class="panel-item btn btn-primary post-btn">投稿</router-link>
         </div>
       </div>
       <nav class="nav">
         <ul>
           <li v-for="nav in navlist" :key="nav.id">
-            <router-link exact :to="{ path: 'column', query: { id: nav.id }}">
+            <router-link :class="{active: nav.id == $route.query.cid}" :to="{ path: 'column', query: { cid: nav.id }}">
               {{nav.name}}
               <b class="caret caret-small caret-dark caret-down" v-if="nav.children && nav.children.length"></b>
             </router-link>
             <div class="nav-sub" v-if="nav.children && nav.children.length">
               <ul>
                 <li v-for="item in nav.children" :key="item.id">
-                  <router-link exact :to="{path: 'column', query: {id: item.id}}">{{item.name}}</router-link>
+                  <router-link :class="{active: item.id == $route.query.sid}" :to="{path: 'column', query: {cid: nav.id, sid: item.id}}">{{item.name}}</router-link>
                 </li>
               </ul>
             </div>
@@ -197,7 +197,10 @@ export default {
     initData () {
       let routePath = this.$route.path
       // 首页和用户中心的页面头部不加 style-common
-      if (routePath.indexOf('index') === -1 && routePath.indexOf('/user') === -1) {
+      if (routePath.indexOf('index') === -1 &&
+          routePath.indexOf('/user') === -1 &&
+          routePath.indexOf('/column') === -1
+      ) {
         this.styles = 'style-common'
       }
     },
@@ -317,10 +320,11 @@ export default {
       }
     }
   }
+  .active {
+    font-weight: bold;
+  }
 }
-.link-active {
-  font-weight: bold;
-}
+
 .user-icon {
   position: relative;
   .nav-sub {
