@@ -36,6 +36,7 @@
             含 {{pager.total}} 条搜索结果
           </div>
           <list :dataset="resultList"></list>
+          <pager v-if="pager" @goPage="goPage" :pageInit="page" :pageTotal="pager.pagetotal"></pager>
         </div>
         <!-- no result -->
         <div class="result-nocontent" v-else>
@@ -104,8 +105,13 @@ export default {
         // console.log(this.resultList)
       }
     },
-    goBack () {
-      this.$router.back()
+    goPage (params) {
+      let query = {
+        keyword: this.keyword,
+        type: this.type,
+        page: params.page
+      }
+      this.$router.push({query: query})
     },
     submitSearch () {
       // todo
