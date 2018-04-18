@@ -34,7 +34,7 @@ const fetch = async (url, params = {}, type = 'get') => {
  */
 const URL_API = {
   // get requests
-  'ARTICLE_LIST': 'api/get/list.json',
+  'ARTICLE_LIST': 'api/get/list_page.json',
   'SEARCH_LIST': 'api/get/list.json',
   'TAG_LIST': 'api/get/side/tags.json',
   'ARTICLE_DATA' () {

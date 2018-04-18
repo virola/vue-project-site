@@ -13,7 +13,7 @@
             <router-link to="/index?type=5" :class="{active: type == 5}">深度</router-link>
             <router-link to="/index?type=6" :class="{active: type == 6}">视频</router-link>
           </div>
-          <articles :dataset="listQuery"></articles>
+          <articles :dataset="listQuery" :showLoadmore="false"></articles>
         </div>
         <aside class="side-panel fr">
           <side-block data-key="zhaopin"></side-block>
@@ -27,9 +27,9 @@
 </template>
 
 <script>
-import Banner from '@/components/banner'
-import Articles from '@/components/articles'
-import SideBlock from '@/components/sideblock'
+import Banner from '@/components/Banner'
+import Articles from '@/components/Articles'
+import SideBlock from '@/components/SideBlock'
 
 export default {
   name: 'home',

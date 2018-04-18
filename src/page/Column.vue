@@ -31,8 +31,8 @@
 
 <script>
 import {getColumnInfo} from '../service/getData'
-import Articles from '@/components/articles'
-import SideBlock from '@/components/sideblock'
+import Articles from '@/components/Articles'
+import SideBlock from '@/components/SideBlock'
 
 export default {
   name: 'column',
@@ -53,7 +53,8 @@ export default {
       // 子栏目信息
       // sid: 0,
       // 文章列表
-      listQuery: {}
+      listQuery: {},
+      page: 1
     }
   },
   created () {
@@ -73,9 +74,10 @@ export default {
       if (!this.column.id || this.column.id !== query.cid) {
         this.id = query.cid
       }
+      this.page = query.page || 1
       this.listQuery = {
         category: query.sid || query.cid,
-        page: query.page
+        page: this.page
       }
     },
     async getInfo (val) {

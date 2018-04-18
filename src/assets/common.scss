@@ -249,3 +249,9 @@ $main-width: $page-width - $side-width - $main-side-gap - 1px;
     color: $main-color;
   }
 }
+// loadmore components
+.loadmore {
+  padding: 10px;
+  font-size: 14px;
+  color: #aaa;
+}

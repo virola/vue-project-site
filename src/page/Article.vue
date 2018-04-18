@@ -63,7 +63,7 @@
 
 <script>
 import {mapState} from 'vuex'
-import SideBlock from '@/components/sideblock'
+import SideBlock from '@/components/SideBlock'
 import {getArticleData, getArticleComment} from '../service/getData'
 
 export default {

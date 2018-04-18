@@ -1,51 +1,70 @@
 // 竖形显示文章列表的组件。左3右2，5个一组
 <template>
-  <section class="section-list list-article masonry clear">
-    <ul class="masonry-left">
-      <li class="list-item" v-for="(item,index) in list" v-if="index % 5 % 2 === 0" :key="index">
-        <router-link class="link-cover" :to="{path: 'article', query:{id: item.id}}"></router-link>
-        <router-link :to="{path: 'article', query:{id: item.id}}" class="article-pic"><img :src="item.pic" alt="item.title"/>
-        <span class="video-btn" v-if="item.video"><i class="icons"><icon name="play"></icon></i></span>
-        </router-link>
-        <div class="article-text">
-          <p class="article-column"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</p>
-          <h3><router-link :to="{path: 'article', query:{id: item.id}}">{{item.title}}</router-link></h3>
-          <div class="article-info">
-            <p class="article-brief">{{item.brief}}</p>
-            <p class="article-author">{{item.author}}</p>
-            <p class="article-date">{{item.date}}</p>
+  <div>
+    <section class="section-list list-article masonry clear">
+      <ul class="masonry-left">
+        <li class="list-item" v-for="(item,index) in list" v-if="index % 5 % 2 === 0" :key="index">
+          <router-link class="link-cover" :to="{path: 'article', query:{id: item.id}}"></router-link>
+          <router-link :to="{path: 'article', query:{id: item.id}}" class="article-pic"><img :src="item.pic" alt="item.title"/>
+          <span class="video-btn" v-if="item.video"><i class="icons"><icon name="play"></icon></i></span>
+          </router-link>
+          <div class="article-text">
+            <p class="article-column"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</p>
+            <h3><router-link :to="{path: 'article', query:{id: item.id}}">{{item.title}}</router-link></h3>
+            <div class="article-info">
+              <p class="article-brief">{{item.brief}}</p>
+              <p class="article-author">{{item.author}}</p>
+              <p class="article-date">{{item.date}}</p>
+            </div>
           </div>
-        </div>
-      </li>
-    </ul>
-    <ul class="masonry-right">
-      <li class="list-item" v-for="(item,index) in list" v-if="index % 5 % 2 !== 0"  :key="index">
-        <router-link class="link-cover" :to="{path: 'article', query:{id: item.id}}"></router-link>
-        <router-link :to="{path: 'article', query:{id: item.id}}" class="article-pic"><img :src="item.pic" alt="item.title"/></router-link>
-        <div class="article-text">
-          <p class="article-column"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</p>
-          <h3><router-link :to="{path: 'article', query:{id: item.id}}">{{item.title}}</router-link></h3>
-          <div class="article-info">
-            <p class="article-brief">{{item.brief}}</p>
+        </li>
+      </ul>
+      <ul class="masonry-right">
+        <li class="list-item" v-for="(item,index) in list" v-if="index % 5 % 2 !== 0"  :key="index">
+          <router-link class="link-cover" :to="{path: 'article', query:{id: item.id}}"></router-link>
+          <router-link :to="{path: 'article', query:{id: item.id}}" class="article-pic"><img :src="item.pic" alt="item.title"/></router-link>
+          <div class="article-text">
+            <p class="article-column"><i class="icons"><icon name="regular/bookmark"></icon></i>{{item.col_title}}</p>
+            <h3><router-link :to="{path: 'article', query:{id: item.id}}">{{item.title}}</router-link></h3>
+            <div class="article-info">
+              <p class="article-brief">{{item.brief}}</p>
+            </div>
+            <p class="article-date">{{item.author}} | {{item.date}}</p>
           </div>
-          <p class="article-date">{{item.author}} | {{item.date}}</p>
-        </div>
-      </li>
-    </ul>
-  </section>
+        </li>
+      </ul>
+    </section>
+    <!-- loadmore components -->
+    <loadmore v-if="showLoadmore" @loadmore="loadMoreData" :pageInit="pager.pagenum || 1" :pageTotal="pager.pagetotal || 0" :loadFinish="loadFinish"></loadmore>
+  </div>
 </template>
 <script>
 import {getArticleList} from '../service/getData'
+import Loadmore from '@/components/Loadmore'
 
 export default {
   name: 'articles',
-  props: ['dataset'],
+  props: {
+    // query 参数
+    'dataset': {
+      type: Object,
+      default: {
+        page: 1,
+        category: 0
+      }
+    },
+    'showLoadmore': {
+      type: Boolean,
+      default: true
+    }
+  },
+  components: { Loadmore },
   data () {
     return {
-      // 翻页类型
-      'pagetype': 0,
-      'list': [],
-      'pager': {}
+      list: [],
+      pager: {},
+      query: {},
+      loadFinish: true
     }
   },
   created () {
@@ -56,36 +75,25 @@ export default {
   },
   methods: {
     async initData () {
-      const dataset = this.dataset || {
-        page: 1,
-        category: 0
-      }
-      // debugger
-      // console.log(dataset)
+      // this.query = this.dataset
       const data = await getArticleList({
-        page: dataset.page,
-        category: dataset.category
+        page: this.dataset.page,
+        category: this.dataset.category
       })
       this.list = data.list
+      this.pager = data.pager
     },
-    groupList (list) {
-      let data = []
-      let group = []
-      for (let i = 0; i < list.length; i++) {
-        let groupIndex = i % 5
-        // 第一个值 5n + 1
-        if (groupIndex === 0) {
-          group = []
-        }
-        group[groupIndex] = list[i]
-        // 5个的最后一个 5n + 0，组成一组放入data
-        // 或者当前是最后一个元素
-        if (groupIndex === 4 || i === list.length - 1) {
-          data.push(group)
-        }
-      }
-      // console.log(data)
-      return data
+    async loadMoreData (page) {
+      this.loadFinish = false
+      const data = await getArticleList({
+        page: page + 1,
+        category: this.dataset.category
+      })
+      this.list = this.list.concat(data.list)
+      // console.log(this.list)
+      this.pager.pagenum = page + 1
+      this.loadFinish = true
+      // console.log(page)
     }
   }
 }

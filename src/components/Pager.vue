@@ -68,12 +68,7 @@ export default {
     }
   },
   watch: {
-    pageTotal (newVal) {
-      // console.log('total change')
-      // ...
-    },
-    pageInit (newVal) {
-      // console.log('init:' + newVal)
+    'pageInit': function (newVal) {
       if (this.pageCurrent !== newVal) {
         this.pageCurrent = newVal
       }
