@@ -8,10 +8,9 @@
 使用本地json模拟数据，用webpack devServer做转发。
 所有示例数据来自网上，侵权删。
 
-总结工期： 2018.4.3 ~ 2018.4.18 (工作日)
+总结开发工期： 2018.4.3 ~ 2018.4.18 (工作日)
 
-TODO:
-- 开发环境和部署环境的顺利切换
+线上部署代码： http://vue-sample.virola.me/
 
 ## dependencies
 - bootstrap
