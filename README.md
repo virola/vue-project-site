@@ -10,6 +10,9 @@
 
 总结工期： 2018.4.3 ~ 2018.4.18 (工作日)
 
+TODO:
+- 开发环境和部署环境的顺利切换
+
 ## dependencies
 - bootstrap
 - sass
@@ -18,6 +21,7 @@
 - vue-router
 - vue-meta : 自定义document.title
 - vue-awesome : 一个 vuejs 的 SVG icon 组件, built-in with Font Awesome icons. 
+- vue-awesome-swiper : 基于 Swiper4、适用于 Vue 的轮播组件
 
 
 ## Build Setup

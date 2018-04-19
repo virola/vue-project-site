@@ -73,8 +73,8 @@ export default {
   .video-btn {
     position: absolute;
     z-index: 1;
-    right: 20px;
-    bottom: -20px;
+    right: 5px;
+    bottom: 5px;
   }
 }
 .article-text {

@@ -12,12 +12,12 @@ module.exports = {
     assetsPublicPath: '/',
     proxyTable: {
       // user defined. 数据代理配置
-      '/api/get': {
-        target: 'http://localhost:8080/static/mock',
-        pathRewrite: {
-          '^/api/get': ''
-        }
-      }
+      // '/api/get': {
+      //   target: 'http://localhost:8080/static/mock',
+      //   pathRewrite: {
+      //     '^/api/get': ''
+      //   }
+      // }
     },
 
     // Various Dev Server settings

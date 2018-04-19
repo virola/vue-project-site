@@ -1,6 +1,46 @@
 // @file 数据服务接口汇总
 import {getStore} from '../store/util'
 
+/**
+ * 汇总接口URL配置
+ */
+const URL_API = {
+  // get requests
+  'ARTICLE_LIST': 'static/mock/list_page.json',
+  'SEARCH_LIST': 'static/mock/list.json',
+  'TAG_LIST': 'static/mock/side/tags.json',
+  'ARTICLE_DATA' () {
+    const list = ['static/mock/article/2.json', 'static/mock/article/1.json', 'static/mock/article/3.json']
+    return list[Math.round(Math.random() * (list.length - 1))]
+  },
+  'COLUMN_DATA': (id) => {
+    const list = ['static/mock/column/default.json', 'static/mock/column/video.json', 'static/mock/column/topic.json']
+    // const rnd = Math.round(Math.random() * (list.length - 1))
+    let index = id > 3 ? 0 : id - 1
+    return list[index]
+  },
+  'ARTICLE_COMMENTS': 'static/mock/article/comments.json',
+  'BANNER_DATA': 'static/mock/banner.json',
+  'SIDE_ZHAOPIN': 'static/mock/side/zhaopin.json',
+  'SIDE_TRAVEL_APPLY': 'static/mock/side/travel.json',
+  'SIDE_HOT_LIST': 'static/mock/side/hot.json',
+  'SIDE_RECOMMEND': 'static/mock/side/recommend.json',
+  'SIDE_TAGS': 'static/mock/side/tags.json',
+  'USER_DATA': 'static/mock/user.json',
+  'USER_LOGOUT': 'static/mock/logout.json',
+  'USER_COLLECT': 'static/mock/user/collect.json',
+  'USER_MSG': 'static/mock/user/msg.json',
+  // post requests
+  'USER_LOGIN': 'static/api/post/?type=login',
+  'USER_REGISTER': 'static/api/post/?type=register'
+}
+
+/**
+ * 发起一次数据请求，基于axios
+ * @param {string} url URL
+ * @param {Object} params 请求参数/数据
+ * @param {String} type 请求类型 'post' / 'get'
+ */
 const fetch = async (url, params = {}, type = 'get') => {
   type = type.toLowerCase()
   // console.log(params)
@@ -14,9 +54,8 @@ const fetch = async (url, params = {}, type = 'get') => {
   } else if (type === 'post') {
     options.data = params
   }
-  // debugger
   const response = await axios(options)
-  let content = response.data
+  const content = response.data
   if (content.status === 'ok') {
     // success
     return content.data
@@ -27,40 +66,6 @@ const fetch = async (url, params = {}, type = 'get') => {
       errmsg: content.errmsg || '请求错误'
     }
   }
-}
-
-/**
- * 汇总接口URL配置
- */
-const URL_API = {
-  // get requests
-  'ARTICLE_LIST': 'api/get/list_page.json',
-  'SEARCH_LIST': 'api/get/list.json',
-  'TAG_LIST': 'api/get/side/tags.json',
-  'ARTICLE_DATA' () {
-    const list = ['api/get/article/2.json', 'api/get/article/1.json', 'api/get/article/3.json']
-    return list[Math.round(Math.random() * (list.length - 1))]
-  },
-  'COLUMN_DATA': (id) => {
-    const list = ['api/get/column/default.json', 'api/get/column/video.json', 'api/get/column/topic.json']
-    // const rnd = Math.round(Math.random() * (list.length - 1))
-    let index = id > 3 ? 0 : id - 1
-    return list[index]
-  },
-  'ARTICLE_COMMENTS': 'api/get/article/comments.json',
-  'BANNER_DATA': 'api/get/banner.json',
-  'SIDE_ZHAOPIN': 'api/get/side/zhaopin.json',
-  'SIDE_TRAVEL_APPLY': 'api/get/side/travel.json',
-  'SIDE_HOT_LIST': 'api/get/side/hot.json',
-  'SIDE_RECOMMEND': 'api/get/side/recommend.json',
-  'SIDE_TAGS': 'api/get/side/tags.json',
-  'USER_DATA': 'api/get/user.json',
-  'USER_LOGOUT': 'api/get/logout.json',
-  'USER_COLLECT': 'api/get/user/collect.json',
-  'USER_MSG': 'api/get/user/msg.json',
-  // post requests
-  'USER_LOGIN': 'api/post/login',
-  'USER_REGISTER': 'api/post/register'
 }
 
 /**

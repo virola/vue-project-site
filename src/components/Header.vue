@@ -35,14 +35,14 @@
       <nav class="nav">
         <ul>
           <li v-for="nav in navlist" :key="nav.id">
-            <router-link :class="{active: nav.id == $route.query.cid}" :to="{ path: 'column', query: { cid: nav.id }}">
+            <router-link :class="{active: nav.id == $route.query.cid}" :to="{ path: '/column', query: { cid: nav.id }}">
               {{nav.name}}
               <b class="caret caret-small caret-dark caret-down" v-if="nav.children && nav.children.length"></b>
             </router-link>
             <div class="nav-sub" v-if="nav.children && nav.children.length">
               <ul>
                 <li v-for="item in nav.children" :key="item.id">
-                  <router-link :class="{active: item.id == $route.query.sid}" :to="{path: 'column', query: {cid: nav.id, sid: item.id}}">{{item.name}}</router-link>
+                  <router-link :class="{active: item.id == $route.query.sid}" :to="{path: '/column', query: {cid: nav.id, sid: item.id}}">{{item.name}}</router-link>
                 </li>
               </ul>
             </div>

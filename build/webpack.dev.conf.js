@@ -42,7 +42,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     // user set
     before (app) {
       // denglu post
-      app.post('/api/post/login', function (req, res) {
+      app.post('/static/api/post/?type=login', function (req, res) {
         res.json({
           status: 'ok',
           data: {
@@ -54,7 +54,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         })
       })
       // zhuce
-      app.post('/api/post/register', function (req, res) {
+      app.post('/static/api/post/?type=register', function (req, res) {
         res.json({
           status: 'ok',
           data: {
